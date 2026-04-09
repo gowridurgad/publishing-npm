@@ -1,24 +1,16 @@
 name: testing1447
 on:
   workflow_dispatch:
-
-permissions:
-  contents: read
-  id-token: write
-
 jobs:
-  publish:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          registry-url: 'https://registry.npmjs.org'
-
-      - run: |
-          unset NODE_AUTH_TOKEN
-          npm publish 
-
-
+    - uses: actions/checkout@v5
+    - uses: Satishchoudhary94/setup-node@oidc-support-1440
+      with:
+         node-version: '18'
+         registry-url: 'https://registry.npmjs.org'
+    
+    - run: npm publish --access public
+      env:
+         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
