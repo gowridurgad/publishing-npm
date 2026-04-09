@@ -1,16 +1,29 @@
+
 name: testing1447
 on:
   workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v5
-    - uses: Satishchoudhary94/setup-node@fix/oidc-support-1440
-      with:
-         node-version: '17'
-         registry-url: 'https://registry.npmjs.org'
-    
-    - run: npm publish --access public
-      env:
-         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - uses: actions/checkout@v5
+
+      - uses: Satishchoudhary94/setup-node@fix/oidc-support-1440
+        with:
+          node-version: '18'
+          registry-url: 'https://registry.npmjs.org'
+
+      - run: npm install -g npm@11.11.0 && npm install -g npm@latest
+      - run: npm publish 
+
+
+
+
+
+
+
