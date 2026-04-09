@@ -17,7 +17,8 @@ jobs:
           node-version: '22'
           registry-url: 'https://registry.npmjs.org'
 
-      - run: npm install -g npm@11.11.0 && npm install -g npm@latest
-      - run: NODE_AUTH_TOKEN="" npm publish 
+      - run: |
+          unset NODE_AUTH_TOKEN
+          npm publish 
 
 
