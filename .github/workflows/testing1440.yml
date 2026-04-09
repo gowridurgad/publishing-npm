@@ -22,7 +22,7 @@ jobs:
       - name: Bump version (required for publish)
         run: npm version patch --no-git-tag-version
 
-      - run: npm install -g npm@11.5.1
-      - run: npm publish 
+      - run: npm install -g npm@11.11.0 && npm install -g npm@latest
+      - run: NODE_AUTH_TOKEN="" npm publish 
 
 
