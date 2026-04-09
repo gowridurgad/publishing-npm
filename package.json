@@ -1,0 +1,24 @@
+{
+  "name": "@gowri48/testing1440",
+  "version": "0.0.1",
+  "description": "Your package description",
+  "main": "index.js",
+  "repository": "github:gowridurgad/test-setup-node",
+  "author": "gowridurgad",
+  "license": "ISC",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "jest": "^29.6.1"
+  },
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": "20"
+    }
+  }
+}
