@@ -3,7 +3,7 @@
   "version": "0.0.9",
   "description": "Your package description",
   "main": "index.js",
-  "repository": "github:gowridurgad/test-setup-node",
+  "repository": "github:gowridurgad/publishing-npm",
   "author": "gowridurgad",
   "license": "ISC",
   "scripts": {
