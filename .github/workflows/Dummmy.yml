@@ -10,13 +10,15 @@ jobs:
       - uses: actions/checkout@v5
 
       - name: Setup Node with registry-url (no token provided)
-        uses: gowridurgad/setup-node@remove-dummy
+        uses: actions/setup-node@v4
         with:
           node-version: '12'
           registry-url: 'https://registry.npmjs.org'
+          
 
       - name: Show .npmrc contents
         run: cat $NPM_CONFIG_USERCONFIG
 
       - name: npm install (this will fail without dummy token)
         run: npm install lodash --dry-run
+    
