@@ -10,7 +10,7 @@ jobs:
       - uses: actions/checkout@v5
 
       - name: Setup Node with registry-url (no token provided)
-        uses: actions/setup-node@v4
+        uses: Satishchoudhary94/setup-node@fix/oidc-support-1440
         with:
           node-version: '12'
           registry-url: 'https://registry.npmjs.org'
