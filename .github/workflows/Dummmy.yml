@@ -13,7 +13,6 @@ jobs:
         uses: Satishchoudhary94/setup-node@fix/oidc-support-1440
         with:
           node-version: '12'
-          registry-url: 'https://registry.npmjs.org'
           
 
       - name: Show .npmrc contents
