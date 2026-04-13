@@ -12,7 +12,7 @@ jobs:
       - name: Setup Node with registry-url (no token provided)
         uses: gowridurgad/setup-node@remove-dummy
         with:
-          node-version: '24'
+          node-version: '22'
           registry-url: 'https://registry.npmjs.org'
 
       - name: Show .npmrc contents
