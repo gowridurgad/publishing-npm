@@ -21,7 +21,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
 
       - name: npm install 
-        run: npm install lodash --dry-run
+        run: npm publish
 
       # - name: Verify user's project .npmrc is untouched
       #   run: |
