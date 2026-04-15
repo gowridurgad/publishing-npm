@@ -16,7 +16,7 @@ jobs:
           node-version: "24"
           registry-url: "https://registry.npmjs.org/"
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN_ll }} # from users .npmrc
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN_ll }}
 
 
       - name: npm publish
