@@ -9,21 +9,14 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      - name: Create project .npmrc
-        run: |
-            cat > .npmrc <<'EOF'
-            registry=https://registry.npmjs.org/ //registry.npmjs.org/:_authToken=${NPM_TOKEN_TEST}  EOF
 
-      - name: Setup Node with registry-url 
+      - name: Setup Node with registry-url
         uses: actions/setup-node@v6
         with:
-          node-version: '24'
-          registry-url: 'https://registry.npmjs.org/'
-          
-          
+          node-version: "24"
+          registry-url: "https://registry.npmjs.org/"
 
-      - run: npm publish
+      - name: npm publish
+        run: npm publish
         env:
-            NPM_TOKEN_TEST : ${{ secrets.NPM_TOKEN }} # from users .npmrc
-
-   
+          NPM_TOKEN_TEST: ${{ secrets.NPM_TOKEN }} # from users .npmrc
