@@ -9,20 +9,21 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      - name: Create user's project .npmrc with custom token
+      - name: Create project .npmrc
         run: |
-          echo "//registry.npmjs.org/:_authToken=my_real_token_123" > .npmrc
-          echo "registry=https://registry.npmjs.org/" >> .npmrc
+            cat > .npmrc <<'EOF'
+            registry=https://registry.npmjs.org/ //registry.npmjs.org/:_authToken=${NPM_TOKEN_TEST}  EOF
 
       - name: Setup Node with registry-url 
         uses: actions/setup-node@v6
         with:
           node-version: '24'
+          registry-url: 'https://registry.npmjs.org/'
+          
           
 
-      - name: npm install 
-        run: npm publish
+      - run: npm publish
         env:
-            my_real_token_123: ${{ secrets.NPM_TOKEN }} # from users .npmrc
+            NPM_TOKEN_TEST : ${{ secrets.NPM_TOKEN }} # from users .npmrc
 
    
