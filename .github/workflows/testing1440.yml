@@ -1,23 +1,21 @@
-name: testing1447
+name: TestRemoveDummyToken
+
 on:
   workflow_dispatch:
 
-permissions:
-  contents: read
-  id-token: write
-
 jobs:
-  publish:
+  no-token-fails:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - name: Setup Node with registry-url 
+        uses: actions/setup-node@v6
         with:
-          node-version: '24'
+          node-version: '14'
           registry-url: 'https://registry.npmjs.org'
-          
-      - name: npm install (this will fail without dummy token)
-        run: npm install 
+
 
       - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
