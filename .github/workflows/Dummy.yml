@@ -19,5 +19,4 @@ jobs:
 
       - name: npm publish
         run: npm publish
-        env:
-          NPM_TOKEN_TEST: ${{ secrets.NPM_TOKEN }} # from users .npmrc
+
