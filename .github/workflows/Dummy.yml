@@ -20,17 +20,20 @@ jobs:
           node-version: '20'
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Verify user's project .npmrc is untouched
-        run: |
-          echo "=== User's project .npmrc ==="
-          cat .npmrc
-          echo ""
-          echo "=== setup-node's .npmrc ==="
-          cat $NPM_CONFIG_USERCONFIG
-          echo ""
-          echo "=== Checking user's token is intact ==="
-          grep "my_real_token_123" .npmrc && echo "✅ User's token is NOT overridden" || echo "❌ User's token was overridden"
-          echo ""
-          echo "=== Checking dummy token is only in setup-node's file ==="
-          grep "NODE_AUTH_TOKEN" .npmrc && echo "❌ Dummy leaked into user's .npmrc" || echo "✅ Dummy token is NOT in user's .npmrc"
+      - name: npm install 
+        run: npm install lodash --dry-run
+
+      # - name: Verify user's project .npmrc is untouched
+      #   run: |
+      #     echo "=== User's project .npmrc ==="
+      #     cat .npmrc
+      #     echo ""
+      #     echo "=== setup-node's .npmrc ==="
+      #     cat $NPM_CONFIG_USERCONFIG
+      #     echo ""
+      #     echo "=== Checking user's token is intact ==="
+      #     grep "my_real_token_123" .npmrc && echo "✅ User's token is NOT overridden" || echo "❌ User's token was overridden"
+      #     echo ""
+      #     echo "=== Checking dummy token is only in setup-node's file ==="
+      #     grep "NODE_AUTH_TOKEN" .npmrc && echo "❌ Dummy leaked into user's .npmrc" || echo "✅ Dummy token is NOT in user's .npmrc"
     
