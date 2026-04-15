@@ -18,6 +18,6 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
           
       - name: npm install (this will fail without dummy token)
-        run: npm install lodash --dry-run
+        run: npm install 
 
       - run: npm publish
