@@ -1,4 +1,4 @@
-name: TestRemoveDummyToken
+name: npmpublish
 
 on:
   workflow_dispatch:
