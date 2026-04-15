@@ -12,9 +12,12 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v4
         with:
           node-version: '24'
           registry-url: 'https://registry.npmjs.org'
+          
+      - name: npm install (this will fail without dummy token)
+        run: npm install lodash --dry-run
 
       - run: npm publish
