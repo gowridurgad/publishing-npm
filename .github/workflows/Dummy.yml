@@ -1,0 +1,36 @@
+name: Test dummy token does not override user .npmrc
+
+on:
+  workflow_dispatch:
+
+jobs:
+  dummy-does-not-override:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Create user's project .npmrc with custom token
+        run: |
+          echo "//registry.npmjs.org/:_authToken=my_real_token_123" > .npmrc
+          echo "registry=https://registry.npmjs.org/" >> .npmrc
+
+      - name: Setup Node with registry-url (dummy token will be set)
+        uses: actions/setup-node@v6
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Verify user's project .npmrc is untouched
+        run: |
+          echo "=== User's project .npmrc ==="
+          cat .npmrc
+          echo ""
+          echo "=== setup-node's .npmrc ==="
+          cat $NPM_CONFIG_USERCONFIG
+          echo ""
+          echo "=== Checking user's token is intact ==="
+          grep "my_real_token_123" .npmrc && echo "✅ User's token is NOT overridden" || echo "❌ User's token was overridden"
+          echo ""
+          echo "=== Checking dummy token is only in setup-node's file ==="
+          grep "NODE_AUTH_TOKEN" .npmrc && echo "❌ Dummy leaked into user's .npmrc" || echo "✅ Dummy token is NOT in user's .npmrc"
+    
