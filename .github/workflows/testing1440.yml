@@ -1,21 +1,21 @@
-name: npmpublish
-
+name: testing_npm(1477)
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+  id-token: write
+
 jobs:
-  no-token-fails:
+  publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
-      - name: Setup Node with registry-url 
-        uses: actions/setup-node@v6
+      - uses: Satishchoudhary94/setup-node@fix/oidc-support-1440  
         with:
-          node-version: '12'
+          node-version: '24'
           registry-url: 'https://registry.npmjs.org'
-
+          cache: 'npm'
 
       - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
